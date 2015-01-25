@@ -26,6 +26,6 @@
   },
   "preferGlobal": "true",
   "bin": {
-    "localGallery": "server.js"
+    "localExplorer": "server.js"
   }
 }
