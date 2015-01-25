@@ -1,0 +1,9 @@
+#player {
+  position: fixed;
+  bottom: 20px;
+  left: 50px;
+}
+
+body {
+  padding-bottom: 50px;
+}

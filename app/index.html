@@ -10,9 +10,13 @@
 </head>
 <body ng-controller="GalleryListCtrl">
 
+  <div id="player">
+    <audio ng-src="{{selectedSongPath}}" controls autoplay
+      width="auto"></audio>
+  </div>
   <ul>
     <li ng-repeat="item in items">
-      <a href="{{item}}">{{item}}</a>
+      <a href="" ng-click="songSelect(item.path)">{{item.name}}</a>
     </li>
   </ul>
 

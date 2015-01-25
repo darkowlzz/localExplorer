@@ -19,7 +19,12 @@
   },
   "dependencies": {
     "express": "^4.11.0",
+    "lodash": "^2.4.1",
     "q": "^1.1.2",
     "readdirrsync": "0.0.3"
+  },
+  "preferGlobal": "true",
+  "bin": {
+    "localGallery": "server.js"
   }
 }
