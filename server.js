@@ -14,6 +14,8 @@ app.set('json spaces', 2);
 app.use('/app', express.static(__dirname + '/app'));
 app.use('/explore', express.static(process.argv[2]));
 
+console.log('serving', process.argv[2]);
+
 app.get('/music', function (req, res) {
   var files = readdirrsync(process.argv[2]);
   var ext;

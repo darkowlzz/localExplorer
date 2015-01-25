@@ -5,7 +5,8 @@
   "main": "app/index.js",
   "scripts": {
     "start": "http-server -a 0.0.0.0 -p 8000",
-    "test": "node node_modules/karma/bin/karma start test/karma.conf.js"
+    "test": "node node_modules/karma/bin/karma start test/karma.conf.js",
+    "postinstall": "bower install"
   },
   "author": "Sunny <indiasuny000@gmail.com> (darkowlzz)",
   "license": "MIT",
