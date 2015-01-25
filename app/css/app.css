@@ -2,8 +2,20 @@
   position: fixed;
   bottom: 20px;
   left: 50px;
+  z-index: 999;
 }
 
 body {
   padding-bottom: 50px;
+}
+
+md-toolbar h1 {
+  font-size: 1.250em;
+  font-weight: 400;
+  margin: auto;
+}
+
+md-content {
+  padding-left: 30px;
+  padding-right: 30px;
 }

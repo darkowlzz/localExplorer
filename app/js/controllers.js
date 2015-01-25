@@ -1,6 +1,6 @@
 'use strict';
 
-var galleryApp = angular.module('galleryApp', []);
+var galleryApp = angular.module('galleryApp', ['ngMaterial']);
 
 galleryApp.controller('GalleryListCtrl', function($scope, $http, $document) {
   $http.get('/music')
