@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en" ng-app="galleryApp">
+<head>
+  <meta charset="utf-8">
+  <title>Gallery</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="GalleryListCtrl">
+
+  <ul>
+    <li ng-repeat="item in items">
+      <a href="{{item}}">{{item}}</a>
+    </li>
+  </ul>
+
+</body>
+</html>
