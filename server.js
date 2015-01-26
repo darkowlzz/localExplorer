@@ -5,9 +5,11 @@ var express      = require('express'),
     Q            = require('q'),
     readdirrsync = require('readdirrsync'),
     _            = require('lodash'),
-    path         = require('path');
+    path         = require('path'),
+    address      = require('network-address');
 
 var app = express();
+var files, ext;
 
 app.set('json spaces', 2);
 
@@ -17,22 +19,35 @@ app.use('/explore', express.static(process.argv[2]));
 console.log('serving', process.argv[2]);
 
 app.get('/music', function (req, res) {
-  var files = readdirrsync(process.argv[2]);
-  var ext;
-  filterByExtension(files, ['mp3']);
+  files = readdirrsync(process.argv[2]);
+  ext = ['mp3'];
+  filterByExtension(files, ext);
   var slicePos = process.argv[2].length;
   files.forEach(function (file, index) {
     files[index] = {
       path: '/explore/' + file.slice(slicePos),
-      name: path.basename(file)
+      name: path.basename(file),
+      originalPath: files[index]
     }
   });
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(files));
 });
 
+app.get('/download/:file', function (req, res) {
+  var fileObj = getFileObject(req.params.file);
+  res.download(fileObj.originalPath, fileObj.name, function (err) {
+    if (err) {
+      console.log('failed to dnld', err);
+    } else {
+      console.log('downloaded');
+    }
+  });
+});
+
 var server = app.listen(3000, function() {
-  console.log('Listening on port %d', server.address().port);
+  console.log('Visit %s:%d/app/ in a web browser to use localExplorer.',
+              address(), server.address().port);
 });
 
 function filterByExtension(list, ext) {
@@ -43,4 +58,13 @@ function filterByExtension(list, ext) {
       return;
     }
   })
+}
+
+function getFileObject (name) {
+  var result;
+  files.some(function (file) {
+    result = file;
+    return file.name == name;
+  });
+  return result;
 }

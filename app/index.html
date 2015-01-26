@@ -25,7 +25,10 @@
         <md-card-content>
           <div class="md-title-content">
             <p ng-click="songSelect(item.path)">{{item.name}}</p>
-          </div>
+            <a href="/download/{{item.name}}">
+              <ng-md-icon icon="file_download"></ng-md-icon>
+            </a>
+         </div>
         </md-card-content>
       </md-card>
     </md-content>
@@ -35,6 +38,7 @@
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/hammerjs/hammer.js"></script>
   <script src="bower_components/angular-material/angular-material.js"></script>
+  <script src="bower_components/angular-material-icons/angular-material-icons.js"></script>
   <script src="js/controllers.js"></script>
 </body>
 </html>
