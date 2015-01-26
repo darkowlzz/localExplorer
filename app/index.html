@@ -10,7 +10,7 @@
 
 </head>
 <body ng-controller="GalleryListCtrl">
-
+  <div>
     <div id="player">
       <audio ng-src="{{selectedSongPath}}" controls autoplay
         width="auto"></audio>
@@ -25,13 +25,20 @@
         <md-card-content>
           <div class="md-title-content">
             <p ng-click="songSelect(item.path)">{{item.name}}</p>
-            <a href="/download/{{item.name}}">
-              <ng-md-icon icon="file_download"></ng-md-icon>
-            </a>
-         </div>
+            <section layout="row" layout-sm="column">
+              <a href="/download/{{item.name}}">
+                <md-button class="md-fab" aria-label="Download">
+                  <ng-md-icon icon="file_download"></ng-md-icon>
+                </md-button>
+              </a>
+            </section>
+          </div>
         </md-card-content>
       </md-card>
+
     </md-content>
+  </div>
+
 
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-aria/angular-aria.js"></script>
