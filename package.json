@@ -21,6 +21,7 @@
   "dependencies": {
     "express": "^4.11.0",
     "lodash": "^2.4.1",
+    "network-address": "^1.0.0",
     "q": "^1.1.2",
     "readdirrsync": "0.0.3"
   },
