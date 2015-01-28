@@ -17,16 +17,23 @@
     </div>
 
     <md-toolbar layout="row">
-      <h1>Music</h1>
+      <h2>
+        <span>Music</span>
+      </h2>
     </md-toolbar>
 
+    <md-input-container flex>
+      <label>Search</label>
+      <input ng-model="search">
+    </md-input-container>
+
     <md-content>
-      <md-card ng-repeat="item in items">
+      <md-card ng-repeat="song in songs | filter:search">
         <md-card-content>
           <div class="md-title-content">
-            <p ng-click="songSelect(item.path)">{{item.name}}</p>
+            <p ng-click="songSelect(song)">{{song.name}}</p>
             <section layout="row" layout-sm="column">
-              <a href="/download/{{item.name}}">
+              <a href="/download/{{song.name}}">
                 <md-button class="md-fab" aria-label="Download">
                   <ng-md-icon icon="file_download"></ng-md-icon>
                 </md-button>

@@ -27,7 +27,8 @@ app.get('/music', function (req, res) {
     files[index] = {
       path: '/explore/' + file.slice(slicePos),
       name: path.basename(file),
-      originalPath: files[index]
+      originalPath: files[index],
+      id: index
     }
   });
   res.setHeader('Content-Type', 'application/json');
