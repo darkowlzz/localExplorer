@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="galleryApp">
+<html lang="en" ng-app="musicApp">
 <head>
   <meta charset="utf-8">
   <title>LocalExplorer</title>
@@ -9,25 +9,26 @@
   <link rel="stylesheet" href="css/app.css">
 
 </head>
-<body ng-controller="GalleryListCtrl">
-  <div>
-    <div id="player">
-      <audio ng-src="{{selectedSongPath}}" controls autoplay
-        width="auto"></audio>
-    </div>
+<body ng-controller="musicCtrl">
+  <div layout="column" style="padding-bottom: 15px;">
 
-    <md-toolbar layout="row">
+    <md-toolbar>
       <h2>
         <span>Music</span>
       </h2>
     </md-toolbar>
 
-    <md-input-container flex>
+    <md-input-container id="search-box" flex>
       <label>Search</label>
       <input ng-model="search">
     </md-input-container>
 
-    <md-content>
+    <md-button id='left-sidebar-button' ng-hide="showPlayer"
+      ng-click="toggleLeft()" class="md-primary">
+      <ng-md-icon icon="album"></ng-md-icon>
+    </md-button>
+
+    <md-content class="md-padding" style="height: 500px;" md-swipe-right="toggleLeft()">
       <md-card ng-repeat="song in songs | filter:search">
         <md-card-content>
           <div class="md-title-content">
@@ -42,8 +43,23 @@
           </div>
         </md-card-content>
       </md-card>
-
     </md-content>
+
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2 side"
+      md-component-id="left" md-swipe-left="toggleLeft()">
+      <md-toolbar class="md-theme-light">
+        <h2>
+          <span>Playing</span>
+        </h2>
+      </md-toolbar>
+      <div id="player">
+        <audio ng-src="{{selectedSongPath}}" controls autoplay
+          width="auto"></audio>
+      </div>
+      <div id="playerDetails">
+        <p ng-bind="currentSong.name"></p>
+      </div>
+     </md-sidenav>
   </div>
 
 
@@ -53,6 +69,7 @@
   <script src="bower_components/hammerjs/hammer.js"></script>
   <script src="bower_components/angular-material/angular-material.js"></script>
   <script src="bower_components/angular-material-icons/angular-material-icons.js"></script>
+  <script src="js/music.js"></script>
   <script src="js/controllers.js"></script>
 </body>
 </html>

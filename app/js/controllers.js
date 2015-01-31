@@ -1,23 +1,32 @@
 'use strict';
 
-var galleryApp = angular.module('galleryApp', ['ngMaterial', 'ngMdIcons']);
+musicApp.controller('musicCtrl', function($scope, $http, $document, $mdSidenav) {
+  $scope.showPlayer = false;
+  $scope.currentSong = {};
 
-galleryApp.controller('GalleryListCtrl', function($scope, $http, $document) {
   $http.get('/music')
   .success(function(data, status, headers, config) {
     $scope.songs = data;
   });
 
   $scope.songSelect = function (song) {
-    console.log(song);
     $scope.currentSongId = song.id;
     $scope.selectedSongPath = song.path;
+    $scope.currentSong = song;
   };
 
   $scope.mplayer = document.getElementsByTagName('audio')[0];
   $scope.mplayer.addEventListener('ended', function () {
     $scope.currentSongId++;
-    $scope.mplayer.src = $scope.songs[$scope.currentSongId].path;
+    $scope.currentSong = $scope.songs[$scope.currentSongId];
+    $scope.mplayer.src = $scope.currentSong.path;
     $scope.mplayer.play();
   });
+
+  $scope.toggleLeft = function () {
+    $mdSidenav('left').toggle()
+                       .then(function () {
+
+                       });
+  }
 });

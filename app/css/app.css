@@ -1,8 +1,17 @@
-#player {
+#left-sidebar-button {
   position: fixed;
-  bottom: 20px;
-  left: 30px;
+  top: 250px;
+  right: 5px;
   z-index: 999;
+}
+
+#playerDetails p {
+  padding: 5px 25px;
+  font-weight: 400;
+}
+
+.side {
+  background: #51E8D6;
 }
 
 body {
