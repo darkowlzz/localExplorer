@@ -13,17 +13,39 @@
   <div layout="column" style="padding-bottom: 15px;">
 
     <md-toolbar>
-      <h2>
-        <span>Music</span>
-      </h2>
+      <div class="md-toolbar-tools">
+        <span class="app-title" >Music</span>
+        <section id="toolset" layout-align="center center">
+          <md-button class="md-fab md-accent tool-btn" aria-label="Upload"
+            ng-click="showFileUpload($event)">
+            <md-tooltip>
+              Upload
+            </md-tooltip>
+            <ng-md-icon icon="file_upload"></ng-md-icon>
+          </md-button>
+          <md-button class="md-fab md-accent tool-btn" aria-label="playlist">
+            <md-tooltip>
+              Account
+            </md-tooltip>
+            <ng-md-icon icon="account_circle"></ng-md-icon>
+          </md-button>
+        </section>
+        <md-button id="search-icon" ng-click="toggleSearch()" 
+          class="md-fab md-accent" aria-label="search">
+          <md-tooltip>
+            Search
+          </md-tooltip>
+          <ng-md-icon icon="search"></ng-md-icon>
+        </md-button>
+      </div>
     </md-toolbar>
 
-    <md-input-container id="search-box" flex>
+    <md-input-container id="search-box" flex ng-show="searchON">
       <label>Search</label>
       <input ng-model="search">
     </md-input-container>
 
-    <md-button id='left-sidebar-button' ng-hide="showPlayer"
+    <md-button id="left-sidebar-button" ng-hide="showPlayer" aria-label="player"
       ng-click="toggleLeft()" class="md-primary">
       <ng-md-icon icon="album"></ng-md-icon>
     </md-button>
@@ -36,6 +58,9 @@
             <section layout="row" layout-sm="column">
               <a href="/download/{{song.name}}">
                 <md-button class="md-fab" aria-label="Download">
+                  <md-tooltip>
+                    Download
+                  </md-tooltip>
                   <ng-md-icon icon="file_download"></ng-md-icon>
                 </md-button>
               </a>
@@ -47,21 +72,50 @@
 
     <md-sidenav class="md-sidenav-left md-whiteframe-z2 side"
       md-component-id="left" md-swipe-left="toggleLeft()">
-      <md-toolbar class="md-theme-light">
-        <h2>
-          <span>Playing</span>
-        </h2>
-      </md-toolbar>
-      <div id="player">
-        <audio ng-src="{{selectedSongPath}}" controls autoplay
-          width="auto"></audio>
-      </div>
-      <div id="playerDetails">
-        <p ng-bind="currentSong.name"></p>
-      </div>
-     </md-sidenav>
-  </div>
+      <div layout="column">
+        <md-toolbar class="md-theme-light">
+          <h2>
+            <span>Playing</span>
+          </h2>
+        </md-toolbar>
 
+        <div id="player">
+          <audio ng-src="{{selectedSongPath}}" controls autoplay
+            width="auto"></audio>
+        </div>
+
+        <div layout="row" layout-align="space-around center">
+          <md-button class="md-fab md-accent" aria-label="Previous"
+            ng-click="playPrevious()">
+            <md-tooltip>
+              Previous
+            </md-tooltip>
+            <ng-md-icon icon="skip_previous"></ng-md-icon>
+          </md-button>
+
+          <md-button class="md-fab md-accent" aria-label="Play"
+            ng-click="togglePlay()">
+            <md-tooltip>
+              Play/Pause
+            </md-tooltip>
+            <ng-md-icon icon="play_arrow"></ng-md-icon>
+          </md-button>
+
+          <md-button class="md-fab md-accent" aria-label="Next"
+            ng-click="playNext()">
+            <md-tooltip>
+              Next
+            </md-tooltip>
+            <ng-md-icon icon="skip_next"></ng-md-icon>
+          </md-button>
+        </div>
+
+        <div id="playerDetails">
+          <p id="musicName" ng-bind="currentSong.name"></p>
+        </div>
+      </div>
+    </md-sidenav>
+  </div>
 
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-aria/angular-aria.js"></script>
@@ -69,6 +123,10 @@
   <script src="bower_components/hammerjs/hammer.js"></script>
   <script src="bower_components/angular-material/angular-material.js"></script>
   <script src="bower_components/angular-material-icons/angular-material-icons.js"></script>
+  <!--
+  <script src="bower_components/angular-file-upload/dist/angular-file-upload-shim.min.js"></script>
+  <script src="bower_components/angular-file_upload/dist/angular-file-Upload.min.js"></script>
+  -->
   <script src="js/music.js"></script>
   <script src="js/controllers.js"></script>
 </body>

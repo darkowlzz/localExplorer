@@ -28,3 +28,18 @@ md-content {
   padding-left: 30px;
   padding-right: 30px;
 }
+
+#search-icon {
+  position: absolute;
+  right: 25px;
+  top: 20px;
+}
+
+.app-title {
+  margin-right: 10px;
+}
+
+#toolset {
+  position: absolute;
+  top: 20px;
+}
