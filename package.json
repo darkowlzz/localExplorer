@@ -11,11 +11,6 @@
   "author": "Sunny <indiasuny000@gmail.com> (darkowlzz)",
   "license": "MIT",
   "devDependencies": {
-    "http-server": "^0.7.4",
-    "jasmine-core": "^2.1.3",
-    "karma": "^0.12.31",
-    "karma-chrome-launcher": "^0.1.7",
-    "karma-jasmine": "^0.3.4",
     "bower": "^1.3.1"
   },
   "dependencies": {
@@ -24,6 +19,7 @@
     "lodash": "^2.4.1",
     "multer": "^0.1.7",
     "network-address": "^1.0.0",
+    "open": "0.0.5",
     "q": "^1.1.2",
     "readdirrsync": "0.0.3"
   },

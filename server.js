@@ -12,14 +12,15 @@ var express      = require('express'),
     multer       = require('multer'),
     multipart    = require('connect-multiparty'),
     multipartMiddleware = multipart(),
-    router       = express.Router();
+    router       = express.Router(),
+    open         = require('open');
 
 var app = express();
 var files, ext;
 
 app.set('json spaces', 2);
 
-app.use('/app', express.static(__dirname + '/app'));
+app.use('/', express.static(__dirname + '/app'));
 app.use('/explore', express.static(process.argv[2]));
 app.use(multer({dest: './uploads/'}));
 
@@ -69,8 +70,9 @@ router.get('/download/:file', function (req, res) {
 app.use('/', router);
 
 var server = app.listen(3000, function() {
-  console.log('Visit %s:%d/app/ in a web browser to use localExplorer.',
+  console.log('Visit %s:%d in a web browser to use localExplorer.',
               address(), server.address().port);
+  open('http://localhost:' + server.address().port);
 });
 
 function filterByExtension(list, ext) {
